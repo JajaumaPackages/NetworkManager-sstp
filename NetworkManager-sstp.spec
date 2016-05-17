@@ -58,7 +58,6 @@ make %{?_smp_mflags}
 make install DESTDIR=%{buildroot} INSTALL="%{__install} -p"
 
 rm -f %{buildroot}%{_libdir}/NetworkManager/lib*.la
-rm -f %{buildroot}%{_libdir}/NetworkManager/lib*.a
 rm -f %{buildroot}%{_libdir}/pppd/%{ppp_version}/*.la
 
 %find_lang %{name}
