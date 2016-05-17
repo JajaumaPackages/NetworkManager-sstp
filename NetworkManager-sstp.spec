@@ -38,7 +38,7 @@ the SSTP server with NetworkManager.
 Summary: NetworkManager VPN plugin for SSTP - GNOME files
 Group:   System Environment/Base
 
-Requires: NetworkManager-sstp = %{version}-%{release}
+Requires: NetworkManager-sstp%{?_isa} = %{version}-%{release}
 Requires: nm-connection-editor
 
 %description -n NetworkManager-sstp-gnome
