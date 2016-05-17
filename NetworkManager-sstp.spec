@@ -25,7 +25,6 @@ Requires: NetworkManager >= 0.9.10
 Requires: sstp-client
 Requires: ppp = %{ppp_version}
 Requires: shared-mime-info
-Requires: gnome-keyring
 
 %global _privatelibs libnm-sstp-properties[.]so.*
 %global __provides_exclude ^(%{_privatelibs})$
