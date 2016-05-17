@@ -23,7 +23,7 @@ BuildRequires: libnm-gtk-devel
 Requires: dbus
 Requires: NetworkManager >= 0.9.10
 Requires: sstp-client
-Requires: ppp >= 2.4.6
+Requires: ppp = %{ppp_version}
 Requires: shared-mime-info
 Requires: gnome-keyring
 
