@@ -1,4 +1,5 @@
 %global snapshot .20160514git86c2737d
+%global git_commit 86c2737d280ef35229c8af936b761c997ec0981f
 %global ppp_version %(rpm -q ppp --queryformat '%{VERSION}')
 
 Summary:   NetworkManager VPN plugin for SSTP
@@ -9,7 +10,7 @@ Release:   0%{snapshot}%{?dist}
 License:   GPLv2+
 URL:       https://github.com/enaess/network-manager-sstp/
 #Only for pre-release versions
-Source:    https://github.com/enaess/network-manager-sstp/archive/86c2737d280ef35229c8af936b761c997ec0981f.tar.gz
+Source:    https://github.com/enaess/network-manager-sstp/archive/%{git_commit}.tar.gz
 #Source:    https://downloads.sourceforge.net/sstp-client/%{name}-%{version}%{snapshot}.tar.xz
 
 BuildRequires: gtk3-devel
@@ -48,9 +49,10 @@ This package contains software for integrating VPN capabilities with
 the SSTP server with NetworkManager (GNOME files).
 
 %prep
-%setup -q
+%setup -q -n network-manager-sstp-%{git_commit}
 
 %build
+./autogen.sh
 %configure \
     --disable-static \
     --enable-more-warnings=yes \
