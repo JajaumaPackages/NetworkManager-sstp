@@ -1,14 +1,16 @@
-%global snapshot %{nil}
+%global snapshot .20160514git86c2737d
 %global ppp_version %(rpm -q ppp --queryformat '%{VERSION}')
 
 Summary:   NetworkManager VPN plugin for SSTP
 Name:      NetworkManager-sstp
 Epoch:     1
 Version:   1.2.0
-Release:   1%{snapshot}%{?dist}
+Release:   0%{snapshot}%{?dist}
 License:   GPLv2+
 URL:       https://github.com/enaess/network-manager-sstp/
-Source:    https://downloads.sourceforge.net/sstp-client/%{name}-%{version}%{snapshot}.tar.xz
+#Only for pre-release versions
+Source:    https://github.com/enaess/network-manager-sstp/archive/86c2737d280ef35229c8af936b761c997ec0981f.tar.gz
+#Source:    https://downloads.sourceforge.net/sstp-client/%{name}-%{version}%{snapshot}.tar.xz
 
 BuildRequires: gtk3-devel
 BuildRequires: dbus-devel
@@ -82,6 +84,10 @@ rm -f %{buildroot}%{_libdir}/pppd/%{ppp_version}/*.la
 %{_datadir}/appdata/network-manager-sstp.metainfo.xml
 
 %changelog
+* Fri Jun 24 2016 Marcin Zajaczkowski <mszpak ATT wp DOTT pl> - 1:1.2.0-0.20160514git86c2737d
+- Upgrade to Git snapshot from 1.2.0 branch
+- Specification enhancements by Lubomir Rintel
+
 * Thu Feb 04 2016 Marcin Zajaczkowski <mszpak ATT wp DOTT pl> - 1:0.9.10-6
 - Apply remarks after package review by Christopher Meng
 - Specify minimal required ppp version to >= 2.4.6
