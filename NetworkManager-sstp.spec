@@ -1,5 +1,5 @@
-%global snapshot .20160514git86c2737d
-%global git_commit 86c2737d280ef35229c8af936b761c997ec0981f
+%global snapshot .20160529git72e50bf2
+%global git_commit 72e50bf25697d39cd7f89160dfe65c97a84817e8
 %global ppp_version %(rpm -q ppp --queryformat '%{VERSION}')
 
 Summary:   NetworkManager VPN plugin for SSTP
@@ -41,7 +41,7 @@ the SSTP server with NetworkManager.
 Summary: NetworkManager VPN plugin for SSTP - GNOME files
 Group:   System Environment/Base
 
-Requires: NetworkManager-sstp%{?_isa} = %{version}-%{release}
+Requires: NetworkManager-sstp%{?_isa} = %{epoch}:%{version}-%{release}
 Requires: nm-connection-editor
 
 %description -n NetworkManager-sstp-gnome
@@ -86,6 +86,10 @@ rm -f %{buildroot}%{_libdir}/pppd/%{ppp_version}/*.la
 %{_datadir}/appdata/network-manager-sstp.metainfo.xml
 
 %changelog
+* Thu Jun 30 2016 Marcin Zajaczkowski <mszpak ATT wp DOTT pl> - 1:1.2.0-0.20160529git72e50bf2
+- Fix issue with broken dependency due to missing epoch
+- Update to Git commit with 1.2.0 final
+
 * Fri Jun 24 2016 Marcin Zajaczkowski <mszpak ATT wp DOTT pl> - 1:1.2.0-0.20160514git86c2737d
 - Upgrade to Git snapshot from 1.2.0 branch
 - Specification enhancements by Lubomir Rintel
