@@ -1,17 +1,14 @@
-%global snapshot .20160529git72e50bf2
-%global git_commit 72e50bf25697d39cd7f89160dfe65c97a84817e8
+%global snapshot %{nil}
 %global ppp_version %(rpm -q ppp --queryformat '%{VERSION}')
 
 Summary:   NetworkManager VPN plugin for SSTP
 Name:      NetworkManager-sstp
 Epoch:     1
 Version:   1.2.0
-Release:   0%{snapshot}%{?dist}
+Release:   1%{snapshot}%{?dist}
 License:   GPLv2+
 URL:       https://github.com/enaess/network-manager-sstp/
-#Only for pre-release versions
-Source:    https://github.com/enaess/network-manager-sstp/archive/%{git_commit}.tar.gz
-#Source:    https://downloads.sourceforge.net/sstp-client/%{name}-%{version}%{snapshot}.tar.xz
+Source:    http://downloads.sourceforge.net/project/sstp-client/network-manager-sstp/%{version}%{snapshot}/%{name}-%{version}%{snapshot}.tar.bz2
 
 BuildRequires: gtk3-devel
 BuildRequires: dbus-devel
@@ -49,10 +46,9 @@ This package contains software for integrating VPN capabilities with
 the SSTP server with NetworkManager (GNOME files).
 
 %prep
-%setup -q -n network-manager-sstp-%{git_commit}
+%setup -q
 
 %build
-./autogen.sh
 %configure \
     --disable-static \
     --enable-more-warnings=yes \
@@ -86,6 +82,9 @@ rm -f %{buildroot}%{_libdir}/pppd/%{ppp_version}/*.la
 %{_datadir}/appdata/network-manager-sstp.metainfo.xml
 
 %changelog
+* Tue Aug 16 2016 Marcin Zajaczkowski <mszpak ATT wp DOTT pl> - 1:1.2.0-1
+- Switch to 1.2.0 tarball
+
 * Thu Jun 30 2016 Marcin Zajaczkowski <mszpak ATT wp DOTT pl> - 1:1.2.0-0.20160529git72e50bf2
 - Fix issue with broken dependency due to missing epoch
 - Update to Git commit with 1.2.0 final
