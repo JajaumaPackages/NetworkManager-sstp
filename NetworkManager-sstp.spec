@@ -1,3 +1,10 @@
+%if 0%{?fedora} < 28 && 0%{?rhel} < 8
+%bcond_without libnm_glib
+%else
+# Disable the legacy version by default
+%bcond_with libnm_glib
+%endif
+
 %global snapshot %{nil}
 %global ppp_version %(rpm -q ppp --queryformat '%{VERSION}')
 
@@ -5,7 +12,7 @@ Summary:   NetworkManager VPN plugin for SSTP
 Name:      NetworkManager-sstp
 Epoch:     1
 Version:   1.2.0
-Release:   4%{snapshot}%{?dist}
+Release:   5%{snapshot}%{?dist}
 License:   GPLv2+
 URL:       https://github.com/enaess/network-manager-sstp/
 Source:    http://downloads.sourceforge.net/project/sstp-client/network-manager-sstp/%{version}%{snapshot}/%{name}-%{version}%{snapshot}.tar.bz2
@@ -26,9 +33,7 @@ Requires: NetworkManager >= 1.2.0
 Requires: sstp-client
 Requires: ppp = %{ppp_version}
 
-%global _privatelibs libnm-sstp-properties[.]so.*
-%global __provides_exclude ^(%{_privatelibs})$
-%global __requires_exclude ^(%{_privatelibs})$
+%global __provides_exclude ^libnm-.*\\.so
 
 %description
 This package contains software for integrating VPN capabilities using
@@ -51,6 +56,9 @@ the SSTP server with NetworkManager (GNOME files).
 %build
 %configure \
     --disable-static \
+%if %without libnm_glib
+    --without-libnm-glib \
+%endif
     --enable-more-warnings=yes \
     --with-pppd-plugin-dir=%{_libdir}/pppd/%{ppp_version}
 make %{?_smp_mflags}
@@ -75,13 +83,19 @@ rm -f %{buildroot}%{_libdir}/pppd/%{ppp_version}/*.la
 %files -n NetworkManager-sstp-gnome
 %doc AUTHORS README ChangeLog
 %license COPYING
-%config(noreplace) %{_sysconfdir}/NetworkManager/VPN/nm-sstp-service.name
 %{_libdir}/NetworkManager/lib*.so*
 %dir %{_datadir}/gnome-vpn-properties/sstp
 %{_datadir}/gnome-vpn-properties/sstp/nm-sstp-dialog.ui
 %{_datadir}/appdata/network-manager-sstp.metainfo.xml
 
+%if %with libnm_glib
+%{_sysconfdir}/NetworkManager/VPN/nm-sstp-service.name
+%endif
+
 %changelog
+* Thu Nov 30 2017 Lubomir Rintel <lkundrak@v3.sk> - 1.2.0-5
+- Drop libnm-glib for Fedora 28
+
 * Wed Aug 02 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1:1.2.0-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
 
