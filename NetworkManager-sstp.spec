@@ -15,7 +15,7 @@ Version:   1.2.6
 Release:   1%{snapshot}%{?dist}
 License:   GPLv2+
 URL:       https://github.com/enaess/network-manager-sstp/
-Source:    http://downloads.sourceforge.net/project/sstp-client/network-manager-sstp/%{version}%{snapshot}/%{name}-%{version}%{snapshot}.tar.bz2
+Source:    https://downloads.sourceforge.net/project/sstp-client/network-manager-sstp/%{name}-%{version}%{snapshot}.tar.bz2
 
 BuildRequires: gtk3-devel
 BuildRequires: dbus-devel
