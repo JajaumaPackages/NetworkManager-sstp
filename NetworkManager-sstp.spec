@@ -20,10 +20,10 @@ Source:    https://downloads.sourceforge.net/project/sstp-client/network-manager
 BuildRequires: gtk3-devel
 BuildRequires: dbus-devel
 %if %{with libnm_glib}
-BuildRequires: NetworkManager-libnm-devel >= 1.2.0
-%else
 BuildRequires: NetworkManager-glib-devel >= 1.2.0
 BuildRequires: libnm-gtk-devel >= 1.2.0
+%else
+BuildRequires: NetworkManager-libnm-devel >= 1.2.0
 %endif
 BuildRequires: sstp-client-devel
 BuildRequires: glib2-devel
