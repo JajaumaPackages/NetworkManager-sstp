@@ -88,8 +88,6 @@ rm -f %{buildroot}%{_libdir}/pppd/%{ppp_version}/*.la
 %doc AUTHORS README ChangeLog
 %license COPYING
 %{_libdir}/NetworkManager/lib*.so*
-%dir %{_datadir}/gnome-vpn-properties/sstp
-%{_datadir}/gnome-vpn-properties/sstp/nm-sstp-dialog.ui
 %{_datadir}/appdata/network-manager-sstp.metainfo.xml
 
 %if %with libnm_glib
