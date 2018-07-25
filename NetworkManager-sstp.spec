@@ -27,7 +27,7 @@ BuildRequires: NetworkManager-libnm-devel >= 1.2.0
 %endif
 BuildRequires: sstp-client-devel
 BuildRequires: glib2-devel
-BuildRequires: ppp-devel >= 2.4.6
+BuildRequires: ppp-devel >= 2.4.5
 BuildRequires: libtool intltool gettext
 BuildRequires: libsecret-devel
 BuildRequires: libnma-devel >= 1.2.0
